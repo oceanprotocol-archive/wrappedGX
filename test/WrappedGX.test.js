@@ -48,5 +48,10 @@ require('chai')
                 const balance = (await this.WGX.balanceOf('0xCC97Ed04b5b8912694a9254205ad5b9316755fF0')).toNumber();
                 balance.should.be.bignumber.equal(0);
             });
+            it('Has the correct initial total supply', async function(){
+                const balance = (await this.WGX.totalSupply()).toNumber();
+                balance.should.be.bignumber.equal(0);
+            });
+            
         })
     })
