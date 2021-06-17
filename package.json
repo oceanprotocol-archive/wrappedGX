@@ -1,0 +1,27 @@
+{
+  "name": "wrappedgx",
+  "version": "1.0.0",
+  "description": "",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oceanprotocol/wrappedGX.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oceanprotocol/wrappedGX/issues"
+  },
+  "homepage": "https://github.com/oceanprotocol/wrappedGX#readme",
+  "dependencies": {
+    "bignumber.js": "^9.0.1",
+    "chai": "^4.3.4",
+    "chai-bignumber": "^3.0.0"
+  }
+}
