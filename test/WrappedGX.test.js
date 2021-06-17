@@ -52,6 +52,12 @@ require('chai')
                 const balance = (await this.WGX.totalSupply()).toNumber();
                 balance.should.be.bignumber.equal(0);
             });
-            
+        })
+
+        describe('Contract functions', function(){
+            it('Has the correct name', async function(){
+                const name = await this.WGX.name();
+                name.should.equal("Wrapped GX");
+            });
         })
     })
