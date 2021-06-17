@@ -14,11 +14,11 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-pragma solidity ^0.4.18;
+pragma solidity 0.4.18;
 
-contract WETH9 {
-    string public name     = "Wrapped Ether";
-    string public symbol   = "WETH";
+contract WrappedGX {
+    string public name     = "Wrapped GX";
+    string public symbol   = "WGX";
     uint8  public decimals = 18;
 
     event  Approval(address indexed src, address indexed guy, uint wad);
