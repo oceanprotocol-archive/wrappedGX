@@ -3,6 +3,8 @@ const { assert } = require('chai');
 const { BN, expectRevert } = require('@openzeppelin/test-helpers')
 const BigNumber = web3.BigNumber;
 
+const MAX = "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+
 require('chai')
     .use(require('chai-bignumber')(BigNumber))
     .should()
@@ -155,4 +157,18 @@ require('chai')
             await expectRevert(WGX.transferFrom(bob, alice, 2, { from: alice }), 'revert')
           })
         })
+
+
+      describe('Functions with a maximum allowance', async () => {
+        beforeEach(async () => {
+          await WGX.approve(bob, MAX, { from: alice })
+        })
+
+        it('Alice cannot increase Bobs allowance beyone the maximum', async () => {
+          await WGX.transferFrom(alice, bob, 1, { from: bob })
+          const allowanceAfter = await WGX.allowance(alice, bob)
+          allowanceAfter.toString().should.equal(MAX)
+        })
+
+      })
     })
