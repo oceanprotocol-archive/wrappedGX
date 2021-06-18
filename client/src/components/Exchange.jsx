@@ -24,7 +24,15 @@ export default function Ballances(){
     })
 
     async function deposit(){
-        await contract.methods.approve(String(account), 1).send({ from: String(account) })
+       // await contract.methods.Transfer(String(account), 10).send({ from: String(account) })
+       web3.eth.sendTransaction({
+        from: String(account),
+        to: contract.address,
+        value: '1000000000000000'
+    })
+    .then(function(receipt){
+        console.log("receipt", receipt)
+    });
     }
 
       if (!web3) {
