@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/oceanprotocol/wrappedGX#readme",
   "dependencies": {
+    "@openzeppelin/test-helpers": "^0.5.11",
     "bignumber.js": "^9.0.1",
     "chai": "^4.3.4",
     "chai-bignumber": "^3.0.0"
