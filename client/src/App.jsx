@@ -14,16 +14,21 @@ export default function App(){
   useEffect(() => {
     const getData = async () => {
     const web3 = await getWeb3();
-    const instance = await getContract(web3)
+    const contract = await getContract(web3)
     const account = await web3.eth.getAccounts();
+    const ballanceGX = await web3.eth.getBalance(String(account))
+    const ballanceWGX = await contract.methods.balanceOf(String(account)).call()
 
     updateWeb3(web3)
-    updateContract(instance)
+    updateContract(contract)
     updateAccount(account)
+    updateBallanceGX(ballanceGX)
+    updateBallanceWGX(ballanceWGX)
     }
     getData()
   })
-
+  
+  console.log("ballanceWGX", ballanceWGX)
     if (!web3) {
       return <div>Loading Web3, accounts, and contract...</div>;
     }
@@ -31,6 +36,10 @@ export default function App(){
       <div className="App">
         <h1>Exchange GX for WrappedGX (WGX)</h1>
         <p>Your account: {account}</p>
+        <p>Your GX ballance: {ballanceGX}</p>
+        <p>Your WGX ballance: {ballanceWGX}</p>
+       
+        
 
       </div>
     );

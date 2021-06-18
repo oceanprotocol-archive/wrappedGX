@@ -14,5 +14,6 @@ export default async function getContract(web3){
       } else{
           window.alert("Sorry, the WrappedGX smart contract is not deployed to the current network.")
       }
+     
       return instance
 }
