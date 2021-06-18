@@ -60,7 +60,7 @@ require('chai')
             });
         })
 
-        describe('Contract functions', function(){
+        describe('Basic functions', function(){
             it('Emits deposit event', async function(){
                 const deposit = await this.WGX.deposit();
                 assert.notEqual(deposit.tx, 0x0);
@@ -68,11 +68,91 @@ require('chai')
                 assert.notEqual(deposit.tx, null);
                 assert.notEqual(deposit.tx, undefined);
             });
-            it('Alice deposits GX', async function(){
+            it('Alice deposits 1 GX', async function(){
                 const balanceBefore = await WGX.balanceOf(alice)
                 await WGX.sendTransaction({ from: alice, value: 1 })
                 const balanceAfter = await WGX.balanceOf(alice)
                 balanceAfter.toString().should.equal(balanceBefore.add(new BN('1')).toString())
             });
+            it('Alice withdraws 1 GX', async function(){
+                const balanceBefore = await WGX.balanceOf(alice)
+                await WGX.withdraw(1, { from: alice })
+                const balanceAfter = await WGX.balanceOf(alice)
+                balanceAfter.toString().should.equal(balanceBefore.sub(new BN('1')).toString())
+              })
+        })
+
+        describe('Functions with a positive balance', async () => {
+            beforeEach(async () => {
+            await WGX.deposit({ from: alice, value: 10 })
+            })
+    
+            it('Returns the WGX balance as total supply', async () => {
+                const totalSupply = await WGX.totalSupply()
+                totalSupply.toString().should.equal('10')
+            })
+            it('Alice withdraws WGX', async () => {
+                const balanceBefore = await WGX.balanceOf(alice)
+                await WGX.withdraw(1, { from: alice })
+                const balanceAfter = await WGX.balanceOf(alice)
+                balanceAfter.toString().should.equal(balanceBefore.sub(new BN('1')).toString())
+              })
+            it('Alice cannot withdraw beyond her balance', async () => {
+                await expectRevert(WGX.withdraw(100, { from: alice }), 'revert')
+            })
+            it('Alice transfers WGX to Bob', async () => {
+                const balanceBefore = await WGX.balanceOf(bob)
+                await WGX.transfer(bob, 1, { from: alice })
+                const balanceAfter = await WGX.balanceOf(bob)
+                balanceAfter.toString().should.equal(balanceBefore.add(new BN('1')).toString())
+              })
+            it('Alice transfers WGX to address(0)', async () => {
+                const balanceBefore = await WGX.balanceOf(alice)
+                await WGX.transfer('0x0000000000000000000000000000000000000000', 1, { from: alice })
+                const balanceAfter = await WGX.balanceOf(alice)
+                balanceAfter.toString().should.equal(balanceBefore.sub(new BN('1')).toString())
+            })   
+            it('Alice transfers WGX to Bob using transferFrom', async () => {
+                const balanceBefore = await WGX.balanceOf(bob)
+                await WGX.transferFrom(alice, bob, 1, { from: alice })
+                const balanceAfter = await WGX.balanceOf(bob)
+                balanceAfter.toString().should.equal(balanceBefore.add(new BN('1')).toString())
+              })
+            it('Alice transfers WGX to address(0) using transferFrom', async () => {
+                const balanceBefore = await WGX.balanceOf(alice)
+                await WGX.transferFrom(alice, '0x0000000000000000000000000000000000000000', 1, { from: alice })
+                const balanceAfter = await WGX.balanceOf(alice)
+                balanceAfter.toString().should.equal(balanceBefore.sub(new BN('1')).toString())
+            })  
+            it('Alice and Bob cannot transfer beyond their balance', async () => {
+                await expectRevert(WGX.transfer(bob, 100, { from: alice }), 'revert')
+                await expectRevert(WGX.transferFrom(alice, bob, 100, { from: alice }), 'revert')
+                await expectRevert(WGX.transfer(alice, 100, { from: bob }), 'revert')
+                await expectRevert(WGX.transferFrom(bob, alice, 100, { from: bob }), 'revert')
+              })
+            it('Alice approves to increase Bobs allowance', async () => {
+                const allowanceBefore = await WGX.allowance(alice, bob)
+                await WGX.approve(bob, 1, { from: alice })
+                const allowanceAfter = await WGX.allowance(alice, bob)
+                allowanceAfter.toString().should.equal(allowanceBefore.add(new BN('1')).toString())
+              })
+        })
+
+      describe('Functions with a positive allowance', async () => {
+        beforeEach(async () => {
+          await WGX.approve(bob, 1, { from: alice })
+        })
+
+        it('Bob transfers WGX to Alice using transferFrom and allowance', async () => {
+            const balanceBefore = await WGX.balanceOf(bob)
+            await WGX.transferFrom(alice, bob, 1, { from: bob })
+            const balanceAfter = await WGX.balanceOf(bob)
+            balanceAfter.toString().should.equal(balanceBefore.add(new BN('1')).toString())
+          })
+
+        it('Alice and Bob cannot transfer beyond allowance', async () => {
+            await expectRevert(WGX.transferFrom(alice, bob, 2, { from: bob }), 'revert')
+            await expectRevert(WGX.transferFrom(bob, alice, 2, { from: alice }), 'revert')
+          })
         })
     })
