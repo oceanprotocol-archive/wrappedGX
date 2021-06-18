@@ -15,26 +15,25 @@ export default function Ballances(){
         const web3 = await getWeb3();
         const contract = await getContract(web3)
         const account = await web3.eth.getAccounts();
-        const ballanceGX = await web3.eth.getBalance(String(account))
-        const ballanceWGX = await contract.methods.balanceOf(String(account)).call()
   
         updateWeb3(web3)
         updateAccount(account)
         updateContract(contract)
-        updateBallanceGX(web3.utils.fromWei(ballanceGX))
-        updateBallanceWGX(ballanceWGX)
       }
       getBallances(web3)
     })
-    
+
+    async function deposit(){
+        await contract.methods.approve(String(account), 1).send({ from: String(account) })
+    }
+
       if (!web3) {
         return <div>Loading Web3, accounts, and contract...</div>;
       }
       return (
-        <div className="Ballances">
-          <p>Your account: {account}</p>
-          <p>Your GX ballance: {ballanceGX}</p>
-          <p>Your WGX ballance: {ballanceWGX}</p>
+        <div className="Exchange">
+            <h2>Exchage GX for WGX</h2>
+            <button onClick={deposit}>Deposit GX</button>
         </div>
       );
     
