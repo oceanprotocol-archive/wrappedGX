@@ -132,7 +132,7 @@ require('chai')
                 await expectRevert(WGX.transfer(alice, 100, { from: bob }), 'revert')
                 await expectRevert(WGX.transferFrom(bob, alice, 100, { from: bob }), 'revert')
               })
-            it('Alice approves to increase Bobs allowance', async () => {
+            it('Alice approves to increase Bob`s allowance', async () => {
                 const allowanceBefore = await WGX.allowance(alice, bob)
                 await WGX.approve(bob, 1, { from: alice })
                 const allowanceAfter = await WGX.allowance(alice, bob)
@@ -164,7 +164,7 @@ require('chai')
           await WGX.approve(bob, MAX, { from: alice })
         })
 
-        it('Alice cannot increase Bobs allowance beyone the maximum', async () => {
+        it('Alice cannot increase Bob`s allowance beyone the maximum', async () => {
           await WGX.transferFrom(alice, bob, 1, { from: bob })
           const allowanceAfter = await WGX.allowance(alice, bob)
           allowanceAfter.toString().should.equal(MAX)
