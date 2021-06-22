@@ -7,6 +7,8 @@ export default function Ballances(){
     const [web3, updateWeb3] = useState()
     const [account, updateAccount] = useState()
     const [contract, updateContract] = useState()
+    const [deposit, updateDeposit] = useState()
+    const [withdrawal, updateWithdrawal] = useState()
   
     useEffect(() => {
       const getBallances = async () => {
@@ -20,21 +22,37 @@ export default function Ballances(){
       }
       getBallances(web3)
     })
-    
-    async function deposit(){
-       // await contract.methods.Transfer(String(account), 10).send({ from: String(account) })
-       web3.eth.sendTransaction({
-        from: String(account),
-        to: contract._address,
-        value: '1000000000000000000'
-    })
-    .then(function(receipt){
-        console.log("receipt", receipt)
-    });
+
+    async function updateDepositAmount(event) {
+      updateDeposit(event.target.value)
+    }
+
+    async function updateWithdrawalAmount(event) {
+      updateWithdrawal(event.target.value)
+    }
+
+    async function sendDeposit(){
+       try {
+        web3.eth.sendTransaction({
+          from: String(account),
+              to: contract._address,
+              value: web3.utils.toWei(deposit)
+          })
+          .then(function(receipt){
+              console.log("receipt", receipt)
+          });
+       } catch (error) {
+         console.log(error)
+       }
+       
     }
 
     async function withdraw() {
-      await contract.methods.withdraw("1000000000000000000").send({ from: String(account) })
+      try {
+        await contract.methods.withdraw(web3.utils.toWei(withdrawal)).send({ from: String(account) })
+      } catch (error) {
+        console.error(error)
+      }
     }
 
       if (!web3) {
@@ -42,10 +60,12 @@ export default function Ballances(){
       }
       return (
         <div className="Exchange">
-            <h2>Exchage 1 GX for 1 WGX</h2>
-            <button onClick={deposit}>Deposit 1 GX</button>
-            <h2>Exchage 1 WGX for 1 GX</h2>
-            <button onClick={withdraw}>Withdraw 1 WGX</button>
+            <h2>Exchage {deposit} GX for {deposit} WGX</h2>
+            <input type="number" name="depositAmount" onChange={updateDepositAmount} />
+            <button onClick={sendDeposit}>Deposit {deposit} GX</button>
+            <h2>Exchage {withdrawal} WGX for {withdrawal} GX</h2>
+            <input type="number" name="WithdrawalAmount" onChange={updateWithdrawalAmount} />
+            <button onClick={withdraw}>Withdraw {withdrawal} WGX</button>
         </div>
       );
     
