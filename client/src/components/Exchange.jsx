@@ -7,8 +7,6 @@ export default function Ballances(){
     const [web3, updateWeb3] = useState()
     const [account, updateAccount] = useState()
     const [contract, updateContract] = useState()
-    const [ballanceGX, updateBallanceGX] = useState()
-    const [ballanceWGX, updateBallanceWGX] = useState()
   
     useEffect(() => {
       const getBallances = async () => {
@@ -22,12 +20,12 @@ export default function Ballances(){
       }
       getBallances(web3)
     })
-
+    
     async function deposit(){
        // await contract.methods.Transfer(String(account), 10).send({ from: String(account) })
        web3.eth.sendTransaction({
         from: String(account),
-        to: contract.address,
+        to: contract._address,
         value: '1000000000000000'
     })
     .then(function(receipt){
