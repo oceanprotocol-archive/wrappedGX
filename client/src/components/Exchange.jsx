@@ -7,6 +7,8 @@ export default function Ballances(){
     const [web3, updateWeb3] = useState()
     const [account, updateAccount] = useState()
     const [contract, updateContract] = useState()
+    const [ballanceGX, updateBallanceGX] = useState()
+    const [ballanceWGX, updateBallanceWGX] = useState()
     const [deposit, updateDeposit] = useState()
     const [withdrawal, updateWithdrawal] = useState()
   
@@ -15,10 +17,14 @@ export default function Ballances(){
         const web3 = await getWeb3();
         const contract = await getContract(web3)
         const account = await web3.eth.getAccounts();
+        const ballanceGX = await web3.eth.getBalance(String(account))
+        const ballanceWGX = await contract.methods.balanceOf(String(account)).call()
   
         updateWeb3(web3)
         updateAccount(account)
         updateContract(contract)
+        updateBallanceGX(web3.utils.fromWei(ballanceGX))
+        updateBallanceWGX(web3.utils.fromWei(ballanceWGX))
       }
       getBallances(web3)
     })
@@ -33,14 +39,25 @@ export default function Ballances(){
 
     async function sendDeposit(){
        try {
-        web3.eth.sendTransaction({
+        await web3.eth.sendTransaction({
           from: String(account),
               to: contract._address,
               value: web3.utils.toWei(deposit)
           })
-          .then(function(receipt){
-              console.log("receipt", receipt)
-          });
+          .then(async function(receipt){
+            console.log("receipt", receipt)
+            const ballanceGX = await web3.eth.getBalance(String(account))
+            const ballanceWGX = await contract.methods.balanceOf(String(account)).call()
+            updateBallanceGX(web3.utils.fromWei(ballanceGX))
+            updateBallanceWGX(web3.utils.fromWei(ballanceWGX))
+        });
+          // .on('transactionHash', () => {
+          //   updateBallanceGX(web3.utils.fromWei(ballanceGX))
+          //   updateBallanceWGX(web3.utils.fromWei(ballanceWGX))
+          // })
+          // .on('Reject', (error) => {
+          //   console.log("Error: ", error)
+          //    })
        } catch (error) {
          console.log(error)
        }
@@ -50,6 +67,9 @@ export default function Ballances(){
     async function withdraw() {
       try {
         await contract.methods.withdraw(web3.utils.toWei(withdrawal)).send({ from: String(account) })
+        .on('error', (error) => {
+          console.log("Error: ", error)
+           })
       } catch (error) {
         console.error(error)
       }
@@ -59,6 +79,12 @@ export default function Ballances(){
         return <div>Loading Web3, accounts, and contract...</div>;
       }
       return (
+        <>
+        <div className="Ballances">
+          <p>Your account: {account}</p>
+          <p>Your GX ballance: {ballanceGX}</p>
+          <p>Your WGX ballance: {ballanceWGX}</p>
+        </div>
         <div className="Exchange">
             <h2>Exchage {deposit} GX for {deposit} WGX</h2>
             <input type="number" name="depositAmount" onChange={updateDepositAmount} />
@@ -67,6 +93,8 @@ export default function Ballances(){
             <input type="number" name="WithdrawalAmount" onChange={updateWithdrawalAmount} />
             <button onClick={withdraw}>Withdraw {withdrawal} WGX</button>
         </div>
+        </>
+
       );
     
   }
