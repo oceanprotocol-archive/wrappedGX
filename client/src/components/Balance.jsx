@@ -23,7 +23,7 @@ export default function Ballances(){
           updateAccount(account)
           updateContract(contract)
           updateBallanceGX(web3.utils.fromWei(ballanceGX))
-          updateBallanceWGX(ballanceWGX)
+          updateBallanceWGX(web3.utils.fromWei(ballanceWGX))
         } catch (error) {
           console.log(error)
         }
