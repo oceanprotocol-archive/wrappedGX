@@ -72,23 +72,16 @@ export default function Ballances(){
     async function withdraw() {
       try {
         contract.methods.withdraw(web3.utils.toWei(withdrawal)).send({ from: String(account) })
-        .then(async function(receipt){
-          console.log("receipt", receipt)
-          const ballanceGX = await web3.eth.getBalance(String(account))
-          const ballanceWGX = await contract.methods.balanceOf(String(account)).call()
-          updateBallanceGX(web3.utils.fromWei(ballanceGX))
-          updateBallanceWGX(web3.utils.fromWei(ballanceWGX))
-      })
-        .then(async function(receipt){
-          console.log("receipt", receipt)
-          const ballanceGX = await web3.eth.getBalance(String(account))
-          const ballanceWGX = await contract.methods.balanceOf(String(account)).call()
-          updateBallanceGX(web3.utils.fromWei(ballanceGX))
-          updateBallanceWGX(web3.utils.fromWei(ballanceWGX))
-        })
-        .catch(e => {
-          console.log(e);
-        });
+          .then(async function(receipt){
+            console.log("receipt", receipt)
+            const ballanceGX = await web3.eth.getBalance(String(account))
+            const ballanceWGX = await contract.methods.balanceOf(String(account)).call()
+            updateBallanceGX(web3.utils.fromWei(ballanceGX))
+            updateBallanceWGX(web3.utils.fromWei(ballanceWGX))
+          })
+          .catch(e => {
+            console.log(e);
+          });
       } catch (error) {
         return console.error("ERROR 1:", error)
       }
