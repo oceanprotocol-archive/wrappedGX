@@ -1,5 +1,4 @@
 import React, { ReactElement, useEffect, useState } from "react";
-import Ballances from "./components/Balance";
 import Exchange from "./components/Exchange";
 
 import "./App.css";

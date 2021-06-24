@@ -14,17 +14,21 @@ export default function Ballances(){
   
     useEffect(() => {
       const getBallances = async () => {
-        const web3 = await getWeb3();
-        const contract = await getContract(web3)
-        const account = await web3.eth.getAccounts();
-        const ballanceGX = await web3.eth.getBalance(String(account))
-        const ballanceWGX = await contract.methods.balanceOf(String(account)).call()
-  
-        updateWeb3(web3)
-        updateAccount(account)
-        updateContract(contract)
-        updateBallanceGX(web3.utils.fromWei(ballanceGX))
-        updateBallanceWGX(web3.utils.fromWei(ballanceWGX))
+        try {
+          const web3 = await getWeb3();
+          const contract = await getContract(web3)
+          const account = await web3.eth.getAccounts();
+          const ballanceGX = await web3.eth.getBalance(String(account))
+          const ballanceWGX = await contract.methods.balanceOf(String(account)).call()
+    
+          updateWeb3(web3)
+          updateAccount(account)
+          updateContract(contract)
+          updateBallanceGX(web3.utils.fromWei(ballanceGX))
+          updateBallanceWGX(web3.utils.fromWei(ballanceWGX))
+        } catch (error) {
+          console.log(error)
+        }
       }
       getBallances(web3)
     })
@@ -75,9 +79,11 @@ export default function Ballances(){
       }
     }
 
-      if (!web3) {
-        return <div>Loading Web3, accounts, and contract...</div>;
-      }
+      if (!web3 || !contract) {
+        return <div>Loading Web3, accounts, and contract...</div>
+      } else if(account === undefined) {
+        return <div>Please connect your account via Metamask to proceed.</div>
+    }
       return (
         <>
         <div className="Ballances">
