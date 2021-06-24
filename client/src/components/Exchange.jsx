@@ -23,7 +23,6 @@ export default function Ballances(){
           const web3 = await getWeb3();
           const contract = await getContract(web3)
           const account = await web3.eth.getAccounts();
-          console.log("Account", account)
           const ballanceGX = await web3.eth.getBalance(String(account))
           const ballanceWGX = await contract.methods.balanceOf(String(account)).call()
     
@@ -49,18 +48,21 @@ export default function Ballances(){
 
     async function sendDeposit(){
        try {
-        await web3.eth.sendTransaction({
+        web3.eth.sendTransaction({
           from: String(account),
               to: contract._address,
               value: web3.utils.toWei(deposit)
-          })
+          })  
           .then(async function(receipt){
             console.log("receipt", receipt)
             const ballanceGX = await web3.eth.getBalance(String(account))
             const ballanceWGX = await contract.methods.balanceOf(String(account)).call()
             updateBallanceGX(web3.utils.fromWei(ballanceGX))
             updateBallanceWGX(web3.utils.fromWei(ballanceWGX))
-        });
+          })
+          .catch(e => {
+            console.log(e);
+          });
        } catch (error) {
          console.log(error)
        }
@@ -69,7 +71,7 @@ export default function Ballances(){
 
     async function withdraw() {
       try {
-        await contract.methods.withdraw(web3.utils.toWei(withdrawal)).send({ from: String(account) })
+        contract.methods.withdraw(web3.utils.toWei(withdrawal)).send({ from: String(account) })
         .then(async function(receipt){
           console.log("receipt", receipt)
           const ballanceGX = await web3.eth.getBalance(String(account))
@@ -77,9 +79,16 @@ export default function Ballances(){
           updateBallanceGX(web3.utils.fromWei(ballanceGX))
           updateBallanceWGX(web3.utils.fromWei(ballanceWGX))
       })
-      .on('error', (error) => {
-          console.log("Error 0: ", error)
-      })
+        .then(async function(receipt){
+          console.log("receipt", receipt)
+          const ballanceGX = await web3.eth.getBalance(String(account))
+          const ballanceWGX = await contract.methods.balanceOf(String(account)).call()
+          updateBallanceGX(web3.utils.fromWei(ballanceGX))
+          updateBallanceWGX(web3.utils.fromWei(ballanceWGX))
+        })
+        .catch(e => {
+          console.log(e);
+        });
       } catch (error) {
         return console.error("ERROR 1:", error)
       }
