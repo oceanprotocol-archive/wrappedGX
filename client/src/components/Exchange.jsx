@@ -1,6 +1,11 @@
-import React, { ReactElement, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import getWeb3 from "../utils/getWeb3";
 import getContract from "../utils/getContract";
+import './exchange.css'
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import Tabs from 'react-bootstrap/Tabs'
+import Tab from 'react-bootstrap/Tab'
 
 export default function Ballances(){
     
@@ -56,13 +61,6 @@ export default function Ballances(){
             updateBallanceGX(web3.utils.fromWei(ballanceGX))
             updateBallanceWGX(web3.utils.fromWei(ballanceWGX))
         });
-          // .on('transactionHash', () => {
-          //   updateBallanceGX(web3.utils.fromWei(ballanceGX))
-          //   updateBallanceWGX(web3.utils.fromWei(ballanceWGX))
-          // })
-          // .on('Reject', (error) => {
-          //   console.log("Error: ", error)
-          //    })
        } catch (error) {
          console.log(error)
        }
@@ -79,11 +77,11 @@ export default function Ballances(){
           updateBallanceGX(web3.utils.fromWei(ballanceGX))
           updateBallanceWGX(web3.utils.fromWei(ballanceWGX))
       })
-        .on('error', (error) => {
-          console.log("Error: ", error)
-           })
+      .on('error', (error) => {
+          console.log("Error 0: ", error)
+      })
       } catch (error) {
-        console.error(error)
+        return console.error("ERROR 1:", error)
       }
     }
 
@@ -95,19 +93,27 @@ export default function Ballances(){
     }
       return (
         <>
-        <div className="Ballances">
-          <p>Your account: {account}</p>
-          <p>Your GX ballance: {ballanceGX}</p>
-          <p>Your WGX ballance: {ballanceWGX}</p>
-        </div>
-        <div className="Exchange">
-            <h2>Exchage {deposit} GX for {deposit} WGX</h2>
+        <Card className="Ballances">
+          <Card.Body><b>Your account:</b> {account}<br /><b>Your GX ballance:</b> {ballanceGX} <br /><b>Your WGX ballance:</b> {ballanceWGX}</Card.Body>
+        </Card> 
+       
+        <Tabs defaultActiveKey="deposit" className="Exchange" >
+          <Tab eventKey="deposit" title="Deposit" className="tab">
+         
+          <h2>Exchage {deposit} GX for {deposit} WGX</h2>
             <input type="number" name="depositAmount" onChange={updateDepositAmount} />
-            <button onClick={sendDeposit}>Deposit {deposit} GX</button>
-            <h2>Exchage {withdrawal} WGX for {withdrawal} GX</h2>
+            <Button variant="primary" onClick={sendDeposit}>Deposit {deposit} GX</Button>
+            
+    
+          </Tab>
+          <Tab eventKey="withdraw" title="Withdraw" className="tab">
+          <h2>Exchage {withdrawal} WGX for {withdrawal} GX</h2>
             <input type="number" name="WithdrawalAmount" onChange={updateWithdrawalAmount} />
-            <button onClick={withdraw}>Withdraw {withdrawal} WGX</button>
-        </div>
+            <Button variant="primary" onClick={withdraw}>Withdraw {withdrawal} WGX</Button>
+          </Tab>
+        </Tabs>
+          
+            
         </>
 
       );

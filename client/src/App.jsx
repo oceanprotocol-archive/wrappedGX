@@ -1,5 +1,7 @@
-import React, { ReactElement, useEffect, useState } from "react";
+import React from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Exchange from "./components/Exchange";
+import './components/exchange.css'
 
 import "./App.css";
 
