@@ -18,6 +18,7 @@ export default function Ballances(){
           const web3 = await getWeb3();
           const contract = await getContract(web3)
           const account = await web3.eth.getAccounts();
+          console.log("Account", account)
           const ballanceGX = await web3.eth.getBalance(String(account))
           const ballanceWGX = await contract.methods.balanceOf(String(account)).call()
     
@@ -71,6 +72,13 @@ export default function Ballances(){
     async function withdraw() {
       try {
         await contract.methods.withdraw(web3.utils.toWei(withdrawal)).send({ from: String(account) })
+        .then(async function(receipt){
+          console.log("receipt", receipt)
+          const ballanceGX = await web3.eth.getBalance(String(account))
+          const ballanceWGX = await contract.methods.balanceOf(String(account)).call()
+          updateBallanceGX(web3.utils.fromWei(ballanceGX))
+          updateBallanceWGX(web3.utils.fromWei(ballanceWGX))
+      })
         .on('error', (error) => {
           console.log("Error: ", error)
            })
@@ -80,7 +88,8 @@ export default function Ballances(){
     }
 
       if (!web3 || !contract) {
-        return <div>Loading Web3, accounts, and contract...</div>
+        return <div>Loading Web3, accounts, and contract... 
+          <br /><br />Please make sure you are logged into Metamask and have selected the correct network.</div>
       } else if(account === undefined) {
         return <div>Please connect your account via Metamask to proceed.</div>
     }
