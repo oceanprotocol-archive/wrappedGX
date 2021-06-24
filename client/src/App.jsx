@@ -10,7 +10,6 @@ export default function App(){
     return (
       <div className="App">
         <h1>Exchange GX for WrappedGX (WGX)</h1>
-        {/* <Ballances /> */}
         <Exchange />
       </div>
     );
