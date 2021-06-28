@@ -1,0 +1,21 @@
+{
+  "parser": "babel-eslint",
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "prettier",
+    "plugin:jsx-a11y/recommended"
+  ],
+  "plugins": ["eslint-plugin-flowtype", "react", "jsx", "jsx-a11y", "prettier"],
+  "parserOptions": {
+    "requireConfigFile": false,
+    "sourceType": "module",
+    "ecmaFeatures": { "jsx": true, "ecmaVersion": 15 }
+  },
+  "env": { "es6": true, "browser": true, "node": true, "jest": true },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}
