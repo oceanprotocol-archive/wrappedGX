@@ -1,6 +1,6 @@
-const wrappedGX = artifacts.require("WrappedGX");
+const wrappedGX = artifacts.require('WrappedGX')
 
-module.exports = async function(deployer) {
+module.exports = async function (deployer) {
   // Deploying WrappedGX Contract
-  deployer.deploy(wrappedGX);
-};
+  deployer.deploy(wrappedGX)
+}
