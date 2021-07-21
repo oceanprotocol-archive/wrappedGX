@@ -1,0 +1,34 @@
+{
+  "name": "wrappedgx",
+  "version": "1.0.0",
+  "description": "",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier --ignore-path .gitignore './**/*.{css,yml,js,jsx,json}' --write"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oceanprotocol/wrappedGX.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oceanprotocol/wrappedGX/issues"
+  },
+  "homepage": "https://github.com/oceanprotocol/wrappedGX#readme",
+  "dependencies": {
+    "@openzeppelin/test-helpers": "^0.5.11",
+    "bignumber.js": "^9.0.1",
+    "chai": "^4.3.4",
+    "chai-bignumber": "^3.0.0"
+  },
+  "devDependencies": {
+    "husky": "^6.0.0",
+    "prettier": "^2.3.0",
+    "pretty-quick": "^3.1.0"
+  }
+}
