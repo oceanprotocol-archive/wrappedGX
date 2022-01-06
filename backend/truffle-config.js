@@ -23,6 +23,30 @@
 //
 // const fs = require('fs');
 // const mnemonic = fs.readFileSync(".secret").toString().trim();
+const HDWalletProvider = require('@truffle/hdwallet-provider')
+const NonceTrackerSubprovider = require('web3-provider-engine/subproviders/nonce-tracker')
+const utils = require('web3-utils')
+
+const MNEMONIC = process.env.MNEMONIC || process.env.NMEMORIC
+const rpcHost = process.env.NETWORK_RPC_HOST
+const rpcPort = process.env.NETWORK_RPC_PORT
+const hdWalletStartIndex = 0
+const hdWalletAccounts = 1
+let hdWalletProvider
+
+const setupWallet = (
+    url
+) => {
+    if (!hdWalletProvider) {
+        hdWalletProvider = new HDWalletProvider(
+            MNEMONIC,
+            url,
+            hdWalletStartIndex,
+            hdWalletAccounts)
+        hdWalletProvider.engine.addProvider(new NonceTrackerSubprovider())
+    }
+    return hdWalletProvider
+}
 
 module.exports = {
   /**
@@ -72,6 +96,12 @@ module.exports = {
     // network_id: 2111,   // This network is yours, in the cloud.
     // production: true    // Treats this network as if it was a public net. (default: false)
     // }
+    gxpos: {
+      provider: () => setupWallet(`YOUR_RPC_HERE`),
+      network_id: 1280, // 1
+      from: '0xC7EC1970B09224B317c52d92f37F5e1E4fF6B687',
+  },
+
   },
 
   // Set default mocha options here, use special reporters etc.

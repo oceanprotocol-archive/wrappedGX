@@ -44,24 +44,34 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.4.18+commit.9cf6e910\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"last_completed_migration\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"completed\",\"type\":\"uint256\"}],\"name\":\"setCompleted\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/home/jamie/Desktop/ocean/wrappedGX/backend/contracts/Migrations.sol\":\"Migrations\"},\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/jamie/Desktop/ocean/wrappedGX/backend/contracts/Migrations.sol\":{\"keccak256\":\"0xffc38bfed96803bb8e0a803f301fd7e827a597c24686021b8070e714e2aa800b\",\"urls\":[\"bzzr://aa3c5003d1ccad77a8959bebebb1ae6a513a1ca83ac3dae5dc97bf1ca0718101\"]}},\"version\":1}",
-  "bytecode": "0x6060604052336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550341561004f57600080fd5b6101b98061005e6000396000f300606060405260043610610057576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063445df0ac1461005c5780638da5cb5b14610085578063fdacd576146100da575b600080fd5b341561006757600080fd5b61006f6100fd565b6040518082815260200191505060405180910390f35b341561009057600080fd5b610098610103565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34156100e557600080fd5b6100fb6004808035906020019091905050610128565b005b60015481565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614151561018357600080fd5b80600181905550505600a165627a7a72305820feaf88186e2bf34dcacb2b9de37629ca8a0566fdbf1d7c212e72429ecb61e1ae0029",
-  "deployedBytecode": "0x606060405260043610610057576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063445df0ac1461005c5780638da5cb5b14610085578063fdacd576146100da575b600080fd5b341561006757600080fd5b61006f6100fd565b6040518082815260200191505060405180910390f35b341561009057600080fd5b610098610103565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34156100e557600080fd5b6100fb6004808035906020019091905050610128565b005b60015481565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614151561018357600080fd5b80600181905550505600a165627a7a72305820feaf88186e2bf34dcacb2b9de37629ca8a0566fdbf1d7c212e72429ecb61e1ae0029",
+  "metadata": "{\"compiler\":{\"version\":\"0.4.18+commit.9cf6e910\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"last_completed_migration\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"completed\",\"type\":\"uint256\"}],\"name\":\"setCompleted\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/Migrations.sol\":\"Migrations\"},\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/Migrations.sol\":{\"keccak256\":\"0xffc38bfed96803bb8e0a803f301fd7e827a597c24686021b8070e714e2aa800b\",\"urls\":[\"bzzr://aa3c5003d1ccad77a8959bebebb1ae6a513a1ca83ac3dae5dc97bf1ca0718101\"]}},\"version\":1}",
+  "bytecode": "0x6060604052336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550341561004f57600080fd5b6101b98061005e6000396000f300606060405260043610610057576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063445df0ac1461005c5780638da5cb5b14610085578063fdacd576146100da575b600080fd5b341561006757600080fd5b61006f6100fd565b6040518082815260200191505060405180910390f35b341561009057600080fd5b610098610103565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34156100e557600080fd5b6100fb6004808035906020019091905050610128565b005b60015481565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614151561018357600080fd5b80600181905550505600a165627a7a723058201ea22ef52cbd6a0ae99bea9049f279efe13d7849ad4249832617a037c80b960f0029",
+  "deployedBytecode": "0x606060405260043610610057576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063445df0ac1461005c5780638da5cb5b14610085578063fdacd576146100da575b600080fd5b341561006757600080fd5b61006f6100fd565b6040518082815260200191505060405180910390f35b341561009057600080fd5b610098610103565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34156100e557600080fd5b6100fb6004808035906020019091905050610128565b005b60015481565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614151561018357600080fd5b80600181905550505600a165627a7a723058201ea22ef52cbd6a0ae99bea9049f279efe13d7849ad4249832617a037c80b960f0029",
   "sourceMap": "66:291:0:-;;;113:10;90:33;;;;;;;;;;;;;;;;;;;;66:291;;;;;;;;;;;;;;",
   "deployedSourceMap": "66:291:0:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;127:36;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;90:33;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;252:103;;;;;;;;;;;;;;;;;;;;;;;;;;127:36;;;;:::o;90:33::-;;;;;;;;;;;;;:::o;252:103::-;225:5;;;;;;;;;;;211:19;;:10;:19;;;196:40;;;;;;;;341:9;314:24;:36;;;;252:103;:::o",
   "source": "// SPDX-License-Identifier: MIT\npragma solidity >=0.4.18 <0.9.0;\n\ncontract Migrations {\n  address public owner = msg.sender;\n  uint public last_completed_migration;\n\n  modifier restricted() {\n    require(\n      msg.sender == owner\n    );\n    _;\n  }\n\n  function setCompleted(uint completed) public restricted {\n    last_completed_migration = completed;\n  }\n}\n",
-  "sourcePath": "/home/jamie/Desktop/ocean/wrappedGX/backend/contracts/Migrations.sol",
+  "sourcePath": "/ocean/wrappedGX/backend/contracts/Migrations.sol",
   "ast": {
-    "absolutePath": "/home/jamie/Desktop/ocean/wrappedGX/backend/contracts/Migrations.sol",
+    "absolutePath": "project:/contracts/Migrations.sol",
     "exportedSymbols": {
-      "Migrations": [31]
+      "Migrations": [
+        31
+      ]
     },
     "id": 32,
     "nodeType": "SourceUnit",
     "nodes": [
       {
         "id": 1,
-        "literals": ["solidity", ">=", "0.4", ".18", "<", "0.9", ".0"],
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".18",
+          "<",
+          "0.9",
+          ".0"
+        ],
         "nodeType": "PragmaDirective",
         "src": "32:32:0"
       },
@@ -72,7 +82,9 @@
         "documentation": null,
         "fullyImplemented": true,
         "id": 31,
-        "linearizedBaseContracts": [31],
+        "linearizedBaseContracts": [
+          31
+        ],
         "name": "Migrations",
         "nodeType": "ContractDefinition",
         "nodes": [
@@ -419,15 +431,25 @@
   },
   "legacyAST": {
     "attributes": {
-      "absolutePath": "/home/jamie/Desktop/ocean/wrappedGX/backend/contracts/Migrations.sol",
+      "absolutePath": "project:/contracts/Migrations.sol",
       "exportedSymbols": {
-        "Migrations": [31]
+        "Migrations": [
+          31
+        ]
       }
     },
     "children": [
       {
         "attributes": {
-          "literals": ["solidity", ">=", "0.4", ".18", "<", "0.9", ".0"]
+          "literals": [
+            "solidity",
+            ">=",
+            "0.4",
+            ".18",
+            "<",
+            "0.9",
+            ".0"
+          ]
         },
         "id": 1,
         "name": "PragmaDirective",
@@ -435,12 +457,18 @@
       },
       {
         "attributes": {
-          "baseContracts": [null],
-          "contractDependencies": [null],
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
           "contractKind": "contract",
           "documentation": null,
           "fullyImplemented": true,
-          "linearizedBaseContracts": [31],
+          "linearizedBaseContracts": [
+            31
+          ],
           "name": "Migrations",
           "scope": 32
         },
@@ -480,7 +508,9 @@
                   {
                     "attributes": {
                       "argumentTypes": null,
-                      "overloadedDeclarations": [null],
+                      "overloadedDeclarations": [
+                        null
+                      ],
                       "referencedDeclaration": 287,
                       "type": "msg",
                       "value": "msg"
@@ -533,7 +563,9 @@
             "children": [
               {
                 "attributes": {
-                  "parameters": [null]
+                  "parameters": [
+                    null
+                  ]
                 },
                 "children": [],
                 "id": 8,
@@ -552,7 +584,9 @@
                           "isPure": false,
                           "isStructConstructorCall": false,
                           "lValueRequested": false,
-                          "names": [null],
+                          "names": [
+                            null
+                          ],
                           "type": "tuple()",
                           "type_conversion": false
                         },
@@ -565,7 +599,9 @@
                                   "typeString": "bool"
                                 }
                               ],
-                              "overloadedDeclarations": [null],
+                              "overloadedDeclarations": [
+                                null
+                              ],
                               "referencedDeclaration": 290,
                               "type": "function (bool) pure",
                               "value": "require"
@@ -604,7 +640,9 @@
                                   {
                                     "attributes": {
                                       "argumentTypes": null,
-                                      "overloadedDeclarations": [null],
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
                                       "referencedDeclaration": 287,
                                       "type": "msg",
                                       "value": "msg"
@@ -621,7 +659,9 @@
                               {
                                 "attributes": {
                                   "argumentTypes": null,
-                                  "overloadedDeclarations": [null],
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
                                   "referencedDeclaration": 5,
                                   "type": "address",
                                   "value": "owner"
@@ -708,7 +748,9 @@
               },
               {
                 "attributes": {
-                  "parameters": [null]
+                  "parameters": [
+                    null
+                  ]
                 },
                 "children": [],
                 "id": 24,
@@ -717,13 +759,17 @@
               },
               {
                 "attributes": {
-                  "arguments": [null]
+                  "arguments": [
+                    null
+                  ]
                 },
                 "children": [
                   {
                     "attributes": {
                       "argumentTypes": null,
-                      "overloadedDeclarations": [null],
+                      "overloadedDeclarations": [
+                        null
+                      ],
                       "referencedDeclaration": 18,
                       "type": "modifier ()",
                       "value": "restricted"
@@ -755,7 +801,9 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [null],
+                              "overloadedDeclarations": [
+                                null
+                              ],
                               "referencedDeclaration": 7,
                               "type": "uint256",
                               "value": "last_completed_migration"
@@ -767,7 +815,9 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [null],
+                              "overloadedDeclarations": [
+                                null
+                              ],
                               "referencedDeclaration": 20,
                               "type": "uint256",
                               "value": "completed"
@@ -810,17 +860,9 @@
     "name": "solc",
     "version": "0.4.18+commit.9cf6e910.Emscripten.clang"
   },
-  "networks": {
-    "5777": {
-      "events": {},
-      "links": {},
-      "address": "0x8237492da215ffff725F284627a0a66b209De629",
-      "transactionHash": "0xad1a340e45c88d2fc125d813d1a4667e0f773052d228b75f919e6f9ff3003284"
-    }
-  },
-  "schemaVersion": "3.4.1",
-  "updatedAt": "2021-06-25T12:47:19.970Z",
-  "networkType": "ethereum",
+  "networks": {},
+  "schemaVersion": "3.4.4",
+  "updatedAt": "2022-01-06T08:20:52.221Z",
   "devdoc": {
     "methods": {}
   },
