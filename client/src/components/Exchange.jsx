@@ -113,6 +113,8 @@ export default function Ballances() {
         <Card.Body>
           <b>Your account:</b> {account}
           <br />
+          <b>WGX address:</b> {process.env.REACT_APP_WGX_ADDRESS}
+          <br />
           <b>Your GX ballance:</b> {ballanceGX} <br />
           <b>Your WGX ballance:</b> {ballanceWGX}
         </Card.Body>
